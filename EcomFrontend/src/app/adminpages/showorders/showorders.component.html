@@ -1,0 +1,57 @@
+<div class="container" *ngIf="display">
+    <div class="row py-5">
+      <div class="col-12">
+        <table id="example" datatable [dtOptions]="dtOptions"  class="table table-hover responsive nowrap" style="width:100%">
+          <thead>
+            <tr>
+                <th>Product image</th>
+              <th>Product name</th>
+              <th>User name</th>
+              <th> Discription</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Stock</th>
+              <th>Category</th>
+              <th>Status</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let data of product">
+              <td>
+                <a >
+                  <div class="d-flex align-items-center">
+                    <div class="mr-3"><img src="http://localhost:8080/api/products/upload/{{data['product_image']}}" style="height: 100px;" class="img-fluid" alt=""></div>
+  
+                   
+                  </div>
+                </a>
+              </td>
+              <td>{{data['product_name']}}</td>
+              <td>{{data['email']}}</td>
+              <td style="
+              
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 13ch;">{{data['product_discription']}}</td>
+              <td>{{data['product_price']}}</td>
+              <td>{{data['quantity']}}</td>
+              <td>{{data['product_quantity']}}</td>
+              <td>{{data['product_category']}}</td>
+              <td>
+                <div class="badge badge-success badge-success-alt">Enabled</div>
+              </td>
+              
+            </tr>
+  
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+ 

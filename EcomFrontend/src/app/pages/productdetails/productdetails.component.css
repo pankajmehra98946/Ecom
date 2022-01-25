@@ -1,0 +1,25 @@
+.rate {
+  float: left;
+  padding: 0 10px 0 0;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 21px;
+  color:#ccc;
+margin-bottom: 0;
+line-height: 21px;
+}
+.rate:not(:checked) > label:before {
+  content: '\2605';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}

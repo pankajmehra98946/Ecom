@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Project Form</title>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/f.js" type="text/javascript"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({selector:'textarea'});</script>
+</head>
+<body>
+<div class="container col-md-12">    
+            
+    <div id="signupbox" style=" margin-top:50px ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title text-center"><h3>update Product </h3></div>
+            </div>  
+            <div class="panel-body" >
+                <!-- <form method="post" action="."> -->
+                    
+                            
+
+                    <form class="form-horizontal" [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()" >
+                       
+                        
+                        
+                        <input type='hidden'  formControlName = "id" value='{{productId}}' />
+                    <div class="col-md-6">
+                        <div id="div_p_name" class="form-group required">
+                            <label for="p_name" class="control-label col-md-4  requiredField">Project Name<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <input class="input-md emailinput form-control" id="p_name" name="p_name" placeholder="Enter Project Name" style="margin-bottom: 10px" formControlName = "product_name" type="text" />
+                            </div>     
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-md-6">
+                        <div id="div_id_downloads" class="form-group required">
+                            <label for="p_downloads" class="control-label col-md-4  requiredField">Price<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <input class="input-md emailinput form-control" id="p_id" name="p_id" style="margin-bottom: 10px" type="number"  formControlName = "product_price"/>
+                            </div>     
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div id="div_id_link" class="form-group required">
+                            <label for="p_link" class="control-label col-md-4  requiredField">Quantity<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <input class="input-md emailinput form-control" id="p_id" name="p_id" style="margin-bottom: 10px" type="url" formControlName = "product_quantity"/>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="div_id_image" class="form-group required">
+                            <label for="id_image"  class="control-label col-md-4  requiredField">Image<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 "  style="margin-bottom: 10px">
+
+                                <input class="input-md emailinput form-control" (change)="onFileChanged($event)"  style="margin-bottom: 10px" type="file" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div id="div_id_downloads" class="form-group required">
+                            <label for="p_downloads" class="control-label col-md-4  requiredField">Category<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <select name="cars" style="margin-bottom: 10px" (change)="changeCategory($event)" type="number" class="form-control" formControlName = "product_category" >
+                                   
+                                    <option value="">---option---</option>
+                                    <option  *ngFor="let data of categories"     value="{{data['id']}}">{{data['category']}}</option>
+                                   
+                                
+                                </select>
+                            </div>     
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="div_id_downloads" class="form-group required">
+                            <label for="p_downloads" class="control-label col-md-4  requiredField">Sub Category<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-8 ">
+                                <select name="cars" style="margin-bottom: 10px" type="number" class="form-control" formControlName = "product_subcategory" >
+                                   
+                                    <option value="">---option---</option>
+                                    <option  *ngFor="let data of subcategories"     value="{{data['id']}}">{{data['category']}}</option>
+                                   
+                                
+                                </select>
+                            </div>     
+                        </div>
+                    </div>
+
+                   
+
+
+
+                    <div class="col-md-12">
+                        <div id="div_description" class="form-group required">
+                            <label for="p_name" class="control-label col-md-2  requiredField">Description<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <textarea style="margin-bottom: 10px" formControlName = "product_discription" ></textarea>
+                            </div>     
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                    <div class="col-md-12 text-center">
+                        <br/>
+                        <button class="btn btn-info btn-md" [disabled]="!formdata.valid" type="submit">Update </button>  <button class="btn btn-danger btn-md" type="reset">Cancel</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+</body>
+</html>

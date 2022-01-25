@@ -1,0 +1,42 @@
+ <!--for categoryes-->
+ <nav class="navbar navbar-expand-md navbar-light bg-light ">
+           
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav m-auto">
+
+        <!--category-->
+
+        <li class="nav-item dropdown"  *ngFor="let data of categories">
+          <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" (mouseenter)="myFunction(data['id'])" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{data['category']}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li *ngIf="empty" ><a class="dropdown-item"  >empty</a></li>
+        
+                
+                <li *ngFor="let subcat of subcategories"><a class="dropdown-item"  id="navbarDropdownMenuLin" (mouseenter)="mysub(subcat['id'])"  (click)="search(subcat['id'])" >{{subcat['category']}}</a>
+                  <ul class="dropdown-menu" id="nested" aria-labelledby="navbarDropdownMenuLin">
+                    <li *ngIf="empty" ><a class="dropdown-item"  >empty</a></li>
+                
+                        
+                        <li *ngFor="let nestcat of nestedcategories"><a class="dropdown-item" (click)="search(nestcat['id'])" >{{nestcat['category']}}</a></li>
+              
+                  
+                  </ul>
+                </li>
+      
+          
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+  

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stripe/stripe-php": "^7.107",
+        "picqer/php-barcode-generator": "^2.2"
+    }
+}

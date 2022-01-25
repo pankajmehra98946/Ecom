@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+        <app-header [item]="totalItem"></app-header>
+
+    <div class="container mt-5 ">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col">
+                                <h4><b>Shopping Cart</b></h4>
+                            </div>
+                            <div class="col align-self-center text-right text-muted">{{totalItem}} items</div>
+                        </div>
+                    </div>
+    
+                    
+                    <img src="https://assets.materialup.com/uploads/66fb8bdf-29db-40a2-996b-60f3192ea7f0/preview.png" style="height:300px ;width: 500px" *ngIf="product==0" alt="">
+                    <div class="row border-top border-bottom" *ngFor="let items of product" >
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid"src="http://localhost:8080/api/products/upload/{{items['product_image']}}"></div>
+                            <div class="col">
+                                <div class="row text-muted">{{items['product_name']}}</div>
+                                <div class="row">shoes</div>
+                            </div>
+                            <div class="col"> <a >-</a><a  class="border">{{items['quantity']}}</a><a >+</a> </div>
+                            <div class="col">  <span class="btn   close" (click)="removeItem(items)" >&euro; {{items['product_price']}}.00 &#10005;</span></div>
+                        </div>
+                    </div>
+                
+                
+                    <div class="back-to-shop"><a >&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                </div>
+                <div class="col-md-4 summary">
+                    <div>
+                        <h5><b>Summary</b></h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">ITEMS {{totalItem}}</div>
+                        <div class="col text-right">&euro; {{total}}.00</div>
+                    </div>
+                  
+                        <p>SHIPPING</p> <select>
+                            <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+                        </select>
+                        <p>CGST</p> <input id="code" value="3% CGST" readonly>
+                        <p>Coupon</p> <input id="code" [(ngModel)]="couponCode" (change)="checkCoupon()" >
+                   
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+
+                         
+                        <div class="col">TOTAL PRICE</div>
+                          
+                        <div class="col text-right">&euro;{{price}}.00</div>
+                    </div>
+                    <div #paypalRef></div>
+                    <button class="btn" (click)="checkout(price)">CHECKOUT with stripe</button>
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</body>
+</html>

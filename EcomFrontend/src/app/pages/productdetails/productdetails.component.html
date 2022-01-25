@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Item - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        
+    </head>
+    <body>
+        <!-- Navigation-->
+        <app-header [item]="totalItem"></app-header>
+        <!-- Product section-->
+        <section class="py-5" *ngIf="inserted">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-lg-6"><img class="card-img-top mb-5 mb-md-0 img-fluid"  src="http://localhost:8080/api/products/upload/{{product['product_image']}}" alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-1">SKU: BST-498</div>
+                        <h1 class="display-5 fw-bolder">{{product['product_name']}}</h1>
+                        <div class="fs-5 mb-5">
+                            <span class="text-decoration-line-through">${{product['product_price']}}.00</span>
+                            <span>${{product['product_price']}}.00</span>
+                        </div>
+                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="num"  [(ngModel)]="items" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" (click)="addcart()" *ngIf="product['product_quantity'] >=1" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>
+                            <button class="btn btn-outline-danger flex-shrink-0"  *ngIf="product['product_quantity'] ==0" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                               Out of stock
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Related products</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    
+                    
+                    <div class="col mb-5" *ngFor="let data of productRelated">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top img-fluid" src="http://localhost:8080/api/products/upload/{{data['product_image']}}" alt="..." style="height: 200px;" />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{data['product_name']}}</h5>
+                                    <!-- Product price-->
+                                    ${{data['product_price']}}.00
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="viewdetails(data['id'])">View options</a></div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                </div>
+            </div>
+        </section>
+
+        <div class="container my-5">
+            <div class="row">
+                <!-- customer reviews -->
+                <div class="col-lg-4 col-md-5 col-12 mb-4 mb-lg-0 pr-lg-6">
+                   <div class="mb-6">
+                      <h4 class="mb-3">Customer reviews</h4>
+                      <span class="font-14"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i></span>
+                      <span class="h5">{{outOfFive}} out of 5</span>
+                      <p class="font-14">{{totalUsersrating}} customer ratings</p>
+                      <div class="row align-items-center mb-1 ">
+                         <div class="col-md-2 col-2 pr-0">
+                            <div class="font-12 text-dark">5 Star</div>
+                         </div>
+                         <div class="col-md-8 col-8 pr-2">
+                            <div class="progress" style="height: 8px;">
+                               <div class="progress-bar
+                                  bg-warning" role="progressbar" [ngStyle]= "{ 'width':fivestar}"  aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-2">
+                            <div class="font-12 text-primary">{{fivestar}}</div>
+                         </div>
+                      </div>
+                      <div class="row align-items-center mb-1">
+                         <div class="col-md-2 col-2 pr-0">
+                            <div class="font-12 text-dark">4 Star</div>
+                         </div>
+                         <div class="col-md-8 col-8 pr-2">
+                            <div class="progress" style="height: 8px;">
+                               <div class="progress-bar
+                                  bg-warning" role="progressbar" [ngStyle]= "{ 'width':fourstar}"   aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-2">
+                            <div class="font-12 text-primary">{{fourstar}}</div>
+                         </div>
+                      </div>
+                      <div class="row align-items-center mb-1">
+                         <div class="col-md-2 col-2 pr-0">
+                            <div class="font-12 text-dark">3 Star</div>
+                         </div>
+                         <div class="col-md-8 col-8 pr-2">
+                            <div class="progress" style="height: 8px;">
+                               <div class="progress-bar
+                                  bg-warning" role="progressbar"  [ngStyle]= "{ 'width':threestar}"  aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-2">
+                            <div class="font-12 text-primary">{{threestar}}</div>
+                         </div>
+                      </div>
+                      <div class="row align-items-center mb-1">
+                         <div class="col-md-2 col-2 pr-0">
+                            <div class="font-12 text-dark">2 Star</div>
+                         </div>
+                         <div class="col-md-8 col-8 pr-2">
+                            <div class="progress" style="height: 8px;">
+                               <div class="progress-bar
+                                  bg-warning" role="progressbar" [ngStyle]= "{ 'width':twostar}" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-2">
+                            <div class="font-12 text-primary">{{twostar}}</div>
+                         </div>
+                      </div>
+                      <div class="row align-items-center mb-2">
+                         <div class="col-md-2 col-2 pr-0">
+                            <div class="font-12 text-dark">1 Star</div>
+                         </div>
+                         <div class="col-md-8 col-8 pr-2">
+                            <div class="progress" style="height: 8px;">
+                               <div class="progress-bar
+                                  bg-warning" role="progressbar" [ngStyle]= "{ 'width':onestar}" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-2">
+                            <div class="font-12 text-primary">{{onestar}}</div>
+                         </div>
+                      </div>
+                   </div>
+                   <div>
+                     
+                      <!-- <a href="#!" class="btn btn-primary btn-block">Write A Review</a> -->
+                   </div>
+                </div>
+                <!-- customer reviews list -->
+                <div class="col-lg-8 col-md-7 col-12">
+                   <div class="d-flex align-items-center justify-content-between mb-4">
+                      <div>
+                         <h4 class="mb-0 text-danger">Ratings &amp; Reviews</h4>
+                      </div>
+                      <div>
+                         <select class="custom-select">
+                            <option selected="">Sort on</option>
+                            <option value="Most Recent">Most Recent</option>
+                            <option value="Relevant">Relevant</option>
+                            <option value="Newest">Newest</option>
+                         </select>
+                      </div>
+                   </div>
+                   <!-- reviews -->
+                   <div class="mb-4 pb-4 border-bottom"  *ngFor="let data of ProductReviews">
+                      <div class="d-flex mb-3 align-items-center">
+                         <!-- <img src="../assets/images/avatar-1.png" alt="" class="rounded-circle avatar-lg"> -->
+                         <div class="ml-2">
+                            <h5 class="mb-1">
+                                {{data['user_name']}}
+                               <!-- <img src="../assets/images/verified.svg" alt=""> -->
+                            </h5>
+                            <p class="font-12 mb-0">
+                                <span>{{data['created_at']}}</span>
+                            </p>
+                         </div>
+                      </div>
+                      <div class="mb-2">
+                         <span class="font-14 mr-2"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i></span>
+                         <span class="h5">Highly recommended</span>
+                      </div>
+                      <p>
+                         {{data['feedback']}}
+                      </p>
+                      <div class="rate">
+                        <input type="radio" id="star5"  value="5" *ngIf="data['rating']==5"  checked/>
+                        <input type="radio" id="star5"  value="5"  />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4"  value="4" />
+                        <input type="radio" id="star4"  value="4"  *ngIf="data['rating']==4"  checked/>
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3"  value="3" />
+                        <input type="radio" id="star3"  value="3"  *ngIf="data['rating']==3"  checked/>
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" value="2" />
+                        <input type="radio" id="star2"  value="2"  *ngIf="data['rating']==2"  checked/>
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" value="1"/>
+                        <input type="radio" id="star1"  value="1"  *ngIf="data['rating']==1"  checked/>
+                        <label for="star1" title="text">1 star</label>
+                    </div>
+                      <a href="#!" class="btn btn-light btn-sm mr-2">Helpful</a>
+                      <a href="#!" class="text-inherit font-14">Report abuse</a>
+                   </div>
+                   <div  *ngIf="ProductReviews ==''">
+                      no reviews
+                   </div>
+               
+                   <!-- reviews -->
+                
+                   <a (click)="moredetails()" class="btn btn-primary">Read More Reviews</a>
+                </div>
+             </div>
+        </div>
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

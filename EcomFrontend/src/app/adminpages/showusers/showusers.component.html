@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row py-5">
+      <div class="col-12">
+        <table id="example" class="table table-hover responsive nowrap" style="width:100%">
+          <thead>
+            <tr>
+                <th>First name</th>
+              <th>Last name</th>
+              <th>Email </th>
+              
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let data of userList">
+              
+                
+              <td>{{data['firstname']}}</td>
+              
+              <td>{{data['lastname']}}</td>
+              <td>{{data['email']}}</td>
+              
+              <td>
+                <a class="dropdown-item"  (click)="update(data['id'])" ><i class="bx bxs-pencil mr-2"></i> Edit Profile</a>
+                <a class="dropdown-item text-danger" (click)="delete(data['id'])" ><i class="bx bxs-trash mr-2"></i> Remove</a>
+              
+              </td>
+            </tr>
+  
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+ 

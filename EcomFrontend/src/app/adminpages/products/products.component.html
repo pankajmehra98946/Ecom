@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+</head>
+<body>
+  <div *ngIf="display" class="container">
+    <div class="row py-5">
+      <div class="col-12">
+        <table datatable [dtOptions]="dtOptions"  class="table table-hover " >
+          <thead>
+            <tr>
+              <th>Product image</th>
+              <th>Product name</th>
+              <th>product discription</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Category</th>
+              <th>barcode</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let data of productList">
+              <td>
+                <a >
+                  <div class="d-flex align-items-center">
+                    <div class="mr-3"><img src="http://localhost:8080/api/products/upload/{{data['product_image']}}" style="height: 100px;" class="img-fluid" alt=""></div>
+  
+                   
+                  </div>
+                </a>
+              </td>
+              <td>{{data['product_name']}}</td>
+              <td style="
+              
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 13ch;">{{data['product_discription']}}</td>
+              <td>{{data['product_price']}}</td>
+              <td>{{data['product_quantity']}}</td>
+              <td>{{data['product_category']}}</td>
+             <td>
+              <div class="mr-3"><img src="http://localhost:8080/api/products/barcode/{{data['barcode']}}" style="height: 100px;" class="img-fluid" alt=""></div>
+             </td> 
+              <td>
+                <div class="badge badge-success text-success">Enabled</div>
+              </td>
+              <td>
+                <a class="btn btn-info"  (click)="update(data['id'])" ><i class="bx bxs-pencil mr-2"></i> Edit </a>
+                </td>
+                <td>
+                <a class="btn btn-danger" (click)="delete(data['id'])" ><i class="bx bxs-trash mr-2"></i> Remove</a>
+              
+              </td>
+            </tr>
+  
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+  
+ 

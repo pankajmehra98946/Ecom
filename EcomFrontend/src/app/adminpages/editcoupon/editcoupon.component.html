@@ -1,0 +1,109 @@
+
+
+
+
+<div class="container col-md-12">    
+            
+    <div id="signupbox" style=" margin-top:50px ">
+        <div class="card panel-default">
+            <div class="card-header">
+                <div class="panel-title text-center"><h3>Update Coupon</h3></div>
+            </div>  
+            <div class="card-body " >
+              
+                            
+
+                    <form class="form-horizontal" [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()" >
+                       
+                
+                        <div class="row pl-5">
+                         
+                           
+                            <input class="input-md emailinput form-control"  formControlName = "id" type="hidden" />
+                    <div class="col-md-6">
+                        <div id="div_p_name" class="form-group required">
+                            <label for="p_name" class="control-label col-md-4  requiredField">Name<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10">
+                                <input class="input-md emailinput form-control" id="p_name" name="p_name" placeholder="Enter Project Name" style="margin-bottom: 10px" formControlName = "coupon_name" type="text" />
+                            </div>     
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="div_id_downloads" class="form-group required">
+                            <label for="p_downloads" class="control-label col-md-4  requiredField">Code<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <input class=" form-control"  style="margin-bottom: 10px" type="text"  formControlName = "coupon_code"/>
+                            </div>     
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div id="div_id_link" class="form-group required">
+                            <label for="p_link" class="control-label col-md-4  requiredField">Value<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <input class="input-md emailinput form-control" id="p_id" name="p_id" style="margin-bottom: 10px" type="number" formControlName = "coupon_value"/>
+                            </div>     
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div id="div_id_link" class="form-group required">
+                            <label for="p_link" class="control-label col-md-4  requiredField">Limits<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <input class="input-md emailinput form-control"  style="margin-bottom: 10px" type="number" formControlName = "coupon_limit"/>
+                            </div>     
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <div id="div_id_link" class="form-group required">
+                            <label for="p_link" class="control-label col-md-4  requiredField">Started date<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <input class="input-md emailinput form-control"  style="margin-bottom: 10px" type="date" formControlName = "coupon_start"/>
+                            </div>     
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="div_id_link" class="form-group required">
+                            <label for="p_link" class="control-label col-md-4  requiredField">End date<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <input class="input-md emailinput form-control"  style="margin-bottom: 10px" type="date" formControlName = "coupon_end"/>
+                            </div>     
+                        </div>
+                    </div>
+
+                    
+
+                
+  
+                    <div class="col-md-12">
+                        <div id="div_description" class="form-group required">
+                            <label for="p_name" class="control-label col-md-2  requiredField">Status<span class="asteriskField">*</span> </label>
+                            <div class="controls col-md-10 ">
+                                <label for="">deactive</label>
+                                <input type="radio" name="" value="0" formControlName = "coupon_status">
+                                <label for="">active</label>
+                                <input type="radio" name="" value="1" formControlName = "coupon_status">
+                               
+                            </div>  
+                             
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                    <div class="col-md-12 text-center">
+                        <br/>
+                        <button class="btn btn-info btn-md" [disabled]="!formdata.valid" type="submit">Edit </button>  <button class="btn btn-danger btn-md" type="reset">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+
+

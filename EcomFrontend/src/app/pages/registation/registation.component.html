@@ -1,0 +1,53 @@
+ <!-- Navigation-->
+ <app-header></app-header>
+<div class="container mt-5 align-items-center  ">
+  <div class="card w-50 ">
+      <div class="card-header bg-primary text-white">
+              Registation
+      </div>
+      <div class="card-body">
+        <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()" class="was-validated">
+        
+          <div class="form-group">
+            <label for="uname">First Name:</label>
+            <input type="text" class="form-control" id="uname"  minlength="5" placeholder="Enter name" name="uname" formControlName = "firstname" required>
+            
+            <div *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)" class="invalid-feedback">
+              <div *ngIf="f.firstname.errors.required">Name is required</div>
+              <div *ngIf="f.firstname.errors?.minlength">min length must be 5</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="uname">Last Name:</label>
+            <input type="text" class="form-control" id="uname"  minlength="5" placeholder="Enter name" name="uname" formControlName = "lastname" required>
+            
+            <div *ngIf="f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)" class="invalid-feedback">
+              <div *ngIf="f.lastname.errors.required">Name is required</div>
+              <div *ngIf="f.lastname.errors?.minlength">min length must be 5</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="uname">Email:</label>
+            <input type="email" class="form-control" id="uname" placeholder="Enter email" name="uname" formControlName = "email" required>
+            
+            <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+            
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd"  minlength="5" placeholder="Enter password" name="pswd" formControlName = "password" required>
+            <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="invalid-feedback">
+              <div *ngIf="f.password.errors?.minlength">Password must be at least 5 characters</div>
+              <div *ngIf="f.password.errors.required">password is required</div> 
+                
+             </div>
+          </div>
+          <br>
+          <button type="submit" [disabled]="!formdata.valid" class="btn btn-primary">Register</button>
+        </form> 
+      </div>
+  </div>
+</div>

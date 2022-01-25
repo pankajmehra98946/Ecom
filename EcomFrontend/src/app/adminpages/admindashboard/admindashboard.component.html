@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
+   
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    
+   
+
+</head>
+
+<body>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" >
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a >Admin Dashboard</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Jhon
+            <strong>Smith</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a >
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Users</span>
+              
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a  (click)="show('showusers')">Show users 
+                    <span class="badge badge-pill badge-success">Pro</span>
+                  </a>
+                </li>
+              
+               
+              </ul>
+            </div>
+          </li>
+          <!--products -->
+          <li class="sidebar-dropdown">
+            <a >
+              <i class="fa fa-shopping-cart"></i>
+              <span>Product</span>
+              
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a (click)="show('addproduct')" >Add Products
+                  </a>
+                </li>
+                <li>
+                  <a (click)="show('showproduct')"  >Show Product</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+        <!--category-->
+        <li class="sidebar-dropdown">
+          <a >
+            <i class="fa fa-shopping-cart"></i>
+            <span>Category</span>
+            <!-- <span class="badge badge-pill badge-danger">3</span> -->
+          </a>
+          <div class="sidebar-submenu">
+            <ul>
+            
+              <li>
+                <a (click)="show('addcat')"  >Add category</a>
+              </li>
+              <li>
+                <a (click)="show('addsubcat')"  >Add subcategory</a>
+              </li>
+              <li>
+                <a (click)="show('addnested')"  >Add nestedcategory</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+          <!--coupon-->
+          <li class="sidebar-dropdown">
+            <a >
+              <i class="fa fa-shopping-cart"></i>
+              <span>Coupon</span>
+              <!-- <span class="badge badge-pill badge-danger">3</span> -->
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+              
+                <li>
+                  <a (click)="show('addcoupon')"  >Add coupon</a>
+                </li>
+                <li>
+                  <a (click)="show('showcoupon')"  >Coupons</a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+          <li>
+            <a  (click)="show('showorders')">
+              <i class="fa fa-book"></i>
+              <span>Orders</span>
+              
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <a >
+        <i class="fa fa-bell"></i>
+        
+      </a>
+      <a >
+        <i class="fa fa-envelope"></i>
+       
+      </a>
+      <a >
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+      <a (click)="logout()" >
+        <i class="fa fa-power-off"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>Admin Dashboard</h2>
+      <hr>
+      
+      <div class="row" *ngIf="toggler ==' '" >
+        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="single-grid total-sales">
+        <h4>Total Sales</h4>
+        <i class="fa fa-money pull-left" aria-hidden="true"></i>
+        <span class="pull-right">${{orderCount}}</span>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+         <div class="single-grid total-orders">
+        <h4>Total Orders</h4>
+        <i class="fa fa-shopping-cart pull-left" aria-hidden="true"></i>
+        <span class="pull-right">{{totalorder}}</span>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="single-grid total-products">
+        <h4>Total Products</h4>
+        <i class="fa fa-cubes" aria-hidden="true"></i>
+        <span class="pull-right">{{productlen}}</span>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="single-grid total-customers">
+        <h4>Total Customers</h4>
+        <i class="fa fa-users pull-left" aria-hidden="true"></i>
+        <span class="pull-right">{{userlen}}</span>
+        </div>
+        </div>
+        </div>
+
+     
+
+     <!-- main-code  -->
+     <app-addproduct *ngIf="toggler =='addproduct'" > </app-addproduct>
+     <app-addcategory *ngIf="toggler =='addcat'"></app-addcategory>
+     <app-addsubcategory *ngIf="toggler =='addsubcat'"></app-addsubcategory>
+     <app-products *ngIf="toggler =='showproduct'"></app-products>
+     <app-showusers *ngIf="toggler =='showusers'"></app-showusers>
+     <app-showorders *ngIf="toggler =='showorders'"></app-showorders>
+     <app-addnestedcategory *ngIf="toggler =='addnested'"></app-addnestedcategory>
+     <app-addcoupon *ngIf="toggler =='addcoupon'"></app-addcoupon>
+     <app-showcoupon *ngIf="toggler =='showcoupon'"></app-showcoupon>
+     
+    </div>
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+ <!-- Navigation-->
+ <app-header></app-header>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script src="https://use.fontawesome.com/f59bcd8580.js"></script>
+ </head>
+ 
+     <body >
+        
+         <div class="container p-5 ">
+         <div class="row no-gutters shadow-lg ">
+         <div class="col-md-6 d-none d-md-block">
+         <img src="https://images.unsplash.com/photo-1566888596782-c7f41cc184c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80" class="img-fluid" style="min-height:100%;" />
+         </div>
+         <div class="col-md-6 bg-white p-5">
+         <h3 class="pb-3">Login Form</h3>
+         <div class="form-style">
+         <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()">
+           <div class="form-group pb-3">    
+             <input type="email" placeholder="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName = "email">   
+             <small *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="text-danger">
+                 <div *ngIf="f.email.errors.required">Email is required</div>
+                 <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+               </small>
+         </div>
+           <div class="form-group pb-3">   
+             <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1" formControlName = "password">
+             <small *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="text-danger">
+                 <div *ngIf="f.password.errors.required">password is required</div>
+             </small>
+         </div>
+           <div class="d-flex align-items-center justify-content-between">
+         <div class="d-flex align-items-center"><input  type="checkbox" value="1" (change)="check()" formControlName = "remember" /> <span class="pl-2 font-weight-bold">Remember Me</span></div>
+         <div><a routerLink="/forgetpassword">Forget Password?</a></div>
+         </div>
+            <div class="pb-2">
+           <button type="submit"  [disabled]="!formdata.valid" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
+            </div>
+         </form>
+          
+           <div class="pt-4 text-center">
+           Get Members Benefit. <a routerLink="/register">Sign Up</a>
+           </div>
+         </div>
+         
+         </div>
+         </div>
+         </div>
+ 
+ </body>
+ </html>

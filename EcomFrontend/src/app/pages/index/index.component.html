@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Homepage - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+       
+    </head>
+    <body>
+        <!-- Navigation-->
+        <app-header [item]="totalItem"  ></app-header>
+        
+
+
+         <!--for categoryes-->
+ <nav class="navbar navbar-expand-md navbar-light bg-light ">
+           
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav m-auto">
+
+        <!--category-->
+
+        <li class="nav-item dropdown"  *ngFor="let data of categories">
+          <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" (mouseenter)="myFunction(data['id'])" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{data['category']}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li *ngIf="empty" ><a class="dropdown-item"  >empty</a></li>
+        
+                
+                <li *ngFor="let subcat of subcategories"><a class="dropdown-item"  id="navbarDropdownMenuLin" (mouseenter)="mysub(subcat['id'])"  (click)="search(subcat['id'])" >{{subcat['category']}}</a>
+                  <ul class="dropdown-menu" id="nested" aria-labelledby="navbarDropdownMenuLin">
+                    <li *ngIf="empty" ><a class="dropdown-item"  >empty</a></li>
+                
+                        
+                        <li *ngFor="let nestcat of nestedcategories"><a class="dropdown-item" (click)="searchsub(nestcat['id'])" >{{nestcat['category']}}</a></li>
+              
+                  
+                  </ul>
+                </li>
+      
+          
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+        
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">{{'Shopinstyle' | translate}}</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">{{'With_this_shop_hompeage_template'| translate}}</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+       
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                     
+                    <p  *ngIf="emptysubcat">empty</p>
+                    <div class="col mb-5 "  *ngFor="let all of productList">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" *ngIf="all['product_quantity'] >=1" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <div class="badge bg-danger text-white position-absolute" *ngIf="all['product_quantity'] ==0" style="top: 0.5rem; right: 0.5rem">out of stock</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="http://localhost:8080/api/products/upload/{{all['product_image']}}" style="height: 200px;" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{all['product_name']}}</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <span class="text-muted text-decoration-line-through">$20.00</span>
+                                    ${{all['product_price']}}.00
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer  pb-4 pt-0 border-top-0 bg-transparent">
+                                
+                                <div class="text-center" *ngIf="all['product_quantity'] >=1"><a class="btn btn-outline-dark mt-auto"  (click)="addcart(all)">{{'Add to cart'| translate}}</a></div>
+                                <div class="text-center" *ngIf="all['product_quantity'] ==0"><a class="btn btn-outline-danger mt-auto"  >{{'out of stock'| translate}}</a></div>
+                                <div class="text-center"><a class="btn btn-outline-info mt-2"  (click)="viewdetails(all['id'])">{{'view details'| translate}}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">{{'copyright'| translate}}</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+<ngx-spinner></ngx-spinner>

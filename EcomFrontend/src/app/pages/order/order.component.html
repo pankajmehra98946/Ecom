@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <app-header></app-header>
+    <div class="container mt-5" *ngIf="show">
+       
+        <table datatable [dtOptions]="dtOptions"  class="table table-hover">
+          <thead>
+            <tr>
+              <th>Product image</th>
+              <th>Product name</th>
+              <th>Product discription</th>
+              <th> items</th>
+              <th>product_price</th>
+              <th>txn_id</th>
+              <th>date of purchase</th>
+              <th>Add review</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of product">
+              <td><img src="http://localhost:8080/api/products/upload/{{data['product_image']}}" style="height: 100px;" class="img-fluid" alt=""></td>
+              <td>{{data['product_name']}}</td>
+              <td>{{data['product_discription']}}</td>
+              <td>{{data['quantity']}}</td>
+              <td>{{data['product_price']}}</td>
+              <td>{{data['txn_id']}}</td>
+              <td>{{data['created_at']}}</td>
+              <td>
+                 
+      <button class="btn btn-xl btn-outline-primary" (click)="open(mymodal,data['id'])">add</button>
+   
+              <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title"> <div class="review-heading">REVIEWS</div></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div >
+                   
+                    <p class="mb-20">There are no reviews yet.</p>
+                    <form class="review-form"  [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()">
+                        <div class="form-group">
+                          <label>Your rating</label>
+                          <div class="reviews-counter">
+                            <input type="hidden"  value="{{productid}}" formControlName = "product_id" />
+                            <input type="hidden"  value="{{userid}}" formControlName = "user_id" />
+                        <div class="rate">
+                            <input type="radio" id="star5"  value="5" formControlName = "rating" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4"  value="4" formControlName = "rating"/>
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3"  value="3" formControlName = "rating"/>
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" value="2" formControlName = "rating"/>
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" value="1" formControlName = "rating"/>
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                      </div>
+                    </div>
+                        <div class="form-group">
+                          <label>Your message</label>
+                          <textarea class="form-control" rows="5"formControlName = "feedback"></textarea>
+                        </div>
+                        <!-- <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <input type="text" name="" class="form-control" placeholder="Name*" value="{{productid}}">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <input type="text" name="" class="form-control" placeholder="Email Id*">
+                            </div>
+                          </div>
+                        </div> -->
+                        <button class="round-black-btn">Submit Review</button>
+                      </form>
+                  </div>
+                  
+                </div>
+                
+              </ng-template>
+              </td>
+            
+            
+            </tr>
+           
+            
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+</body>
+</html>
